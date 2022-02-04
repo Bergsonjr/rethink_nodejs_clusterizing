@@ -2,11 +2,15 @@
     "name": "rethink_nodejs_clusterizing",
     "version": "1.0.0",
     "description": "Exemplificando a modulo cluster do Node.js junto ao pm2",
-    "main": "index.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node index.js",
-        "start:clusters": "pm2 start app.js -i max --watch",
-        "start:dashboard": "pm2 monit"
+        "start:process": "PORT=3000 node app.js",
+        "start:cluster": "PORT=3001 node cluster.js",
+        "start:pm2": "pm2 start",
+        "process:metrics": "node test/autocannon/singleProcess.test.js",
+        "cluster:metrics": "node test/autocannon/multiProcess.test.js",
+        "pm2:metrics": "node test/autocannon/multiProcessPm2.test.js",
+        "pm2:monit": "pm2 monit"
     },
     "repository": {
         "type": "git",
@@ -21,5 +25,8 @@
     "dependencies": {
         "fastify": "^3.27.0",
         "pm2": "^5.1.2"
+    },
+    "devDependencies": {
+        "autocannon": "^7.6.0"
     }
 }
