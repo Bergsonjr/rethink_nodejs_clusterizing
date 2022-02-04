@@ -1,32 +1,48 @@
 {
-    "name": "rethink_nodejs_clusterizing",
-    "version": "1.0.0",
-    "description": "Exemplificando a modulo cluster do Node.js junto ao pm2",
-    "main": "app.js",
-    "scripts": {
-        "start:process": "PORT=3000 node app.js",
-        "start:cluster": "PORT=3001 node cluster.js",
-        "start:pm2": "pm2 start",
-        "process:metrics": "node test/autocannon/singleProcess.test.js",
-        "cluster:metrics": "node test/autocannon/multiProcess.test.js",
-        "pm2:metrics": "node test/autocannon/multiProcessPm2.test.js",
-        "pm2:monit": "pm2 monit"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Bergsonjr/rethink_nodejs_clusterizing.git"
-    },
-    "author": "Bergson Jr.",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Bergsonjr/rethink_nodejs_clusterizing/issues"
-    },
-    "homepage": "https://github.com/Bergsonjr/rethink_nodejs_clusterizing#readme",
-    "dependencies": {
-        "fastify": "^3.27.0",
-        "pm2": "^5.1.2"
-    },
-    "devDependencies": {
-        "autocannon": "^7.6.0"
-    }
+	"name": "rethink_nodejs_clusterizing",
+	"version": "1.0.0",
+	"description": "Exemplificando a modulo cluster do Node.js junto ao pm2",
+	"main": "app.js",
+	"scripts": {
+		"start:process": "PORT=3000 node app.js",
+		"start:cluster": "PORT=3001 node cluster.js",
+		"start:pm2": "pm2 start",
+		"process:metrics": "node test/autocannon/singleProcess.test.js",
+		"cluster:metrics": "node test/autocannon/multiProcess.test.js",
+		"pm2:metrics": "node test/autocannon/multiProcessPm2.test.js",
+		"pm2:monit": "pm2 monit"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Bergsonjr/rethink_nodejs_clusterizing.git"
+	},
+	"author": "Bergson Jr.",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Bergsonjr/rethink_nodejs_clusterizing/issues"
+	},
+	"homepage": "https://github.com/Bergsonjr/rethink_nodejs_clusterizing#readme",
+	"dependencies": {
+		"fastify": "^3.27.0",
+		"pm2": "^5.1.2"
+	},
+	"devDependencies": {
+		"autocannon": "^7.6.0",
+		"eslint": "^8.8.0",
+		"prettier": "^2.5.1"
+	},
+	"eslintConfig": {
+		"env": {
+			"browser": true,
+			"commonjs": true,
+			"es2021": true
+		},
+		"extends": [
+			"google"
+		],
+		"parserOptions": {
+			"ecmaVersion": "latest"
+		},
+		"rules": {}
+	}
 }
