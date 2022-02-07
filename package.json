@@ -11,10 +11,7 @@
 		"process:metrics": "node test/autocannon/singleProcess.test.js",
 		"cluster:metrics": "node test/autocannon/multiProcess.test.js",
 		"pm2:metrics": "node test/autocannon/multiProcessPm2.test.js",
-		"pm2:monit": "pm2 monit",
-		"process:ngrok": "ngrok http 3000",
-		"cluster:ngrok": "ngrok http 3001",
-		"pm2:ngrok": "ngrok http 3002"
+		"pm2:monit": "pm2 monit"
 	},
 	"repository": {
 		"type": "git",
