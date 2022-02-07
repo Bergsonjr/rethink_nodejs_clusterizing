@@ -1,6 +1,6 @@
 const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
 const server = require('./server');
+const numCPUs = require('os').cpus().length;
 
 (async () => {
 	if (cluster.isMaster) {
@@ -8,17 +8,19 @@ const server = require('./server');
 			cluster.fork();
 		}
 
+		// process is clustered on a core and process id is assigned
+		cluster.on('online', function (worker) {
+			console.log(`Worker ${worker.process.pid} is listening`);
+		});
+
+		// if any of the worker process dies then start a new one by simply forking another one
 		cluster.on('exit', (worker, code, signal) => {
 			console.info(`Worker ${worker.process.pid} died with code: ${code}, and signal: ${signal}`);
+			console.info('Starting a new worker');
 
 			cluster.fork();
-			console.info('Starting a new worker');
 		});
 	} else {
 		await server.start();
-
-		console.info('Master process is running');
 	}
 })();
-
-//252793
