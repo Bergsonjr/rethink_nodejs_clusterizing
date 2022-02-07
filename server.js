@@ -29,8 +29,9 @@ fastify.get('/fail', async (request, reply) => {
 
 const start = async () => {
 	try {
-		await fastify.listen(process.env.PORT || 3001);
+		await fastify.listen(process.env.PORT, '0.0.0.0');
 	} catch (err) {
+		console.log(err, 'err');
 		console.error('error while trying to server up');
 		process.exit(1);
 	}
