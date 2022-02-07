@@ -1,1 +1,1 @@
-web:npm run start:cluster
+web: npm start
