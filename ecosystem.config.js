@@ -5,6 +5,11 @@ module.exports = {
 			script: './app.js',
 			exec_mode: 'cluster',
 			instances: 'max',
+			watch: true,
+			env: {
+				NODE_ENV: 'development',
+				PORT: 3002,
+			},
 		},
 	],
 };
