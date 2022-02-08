@@ -1,10 +1,9 @@
 const cluster = require('cluster');
 const server = require('./server');
-const numCPUs = require('os').cpus().length;
 
 (async () => {
 	if (cluster.isMaster) {
-		for (let i = 0; i < numCPUs; i++) {
+		for (let i = 0; i < 4; i++) {
 			cluster.fork();
 		}
 
