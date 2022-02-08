@@ -5,8 +5,8 @@ function testSingleProcess() {
         title: 'Test for Node.js single process',
         url: 'https://nodejs-process.herokuapp.com/fatorial?n=10',
         method: 'GET',
-        connections: 1000, // número de conexões concorrentes
-        pipelining: 100, // número de solicitações HTTP simultâneas por conexão TCP
+        connections: 100, // número de conexões concorrentes
+        pipelining: 10, // número de solicitações HTTP simultâneas por conexão TCP
         duration: 120, // tempo de execução do teste
     });
 
