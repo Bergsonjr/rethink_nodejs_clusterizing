@@ -5,6 +5,7 @@ const readFileAsync = promisify(fs.readFile);
 
 const getRandomIntInclusive = require('./src/utils/getRandomIntInclusive');
 const factorial = require('./src/utils/factorial');
+const sleep = require('./src/utils/sleep');
 
 const fastify = require('fastify')({
 	logger: true,
@@ -19,7 +20,11 @@ fastify.get('/', async (request, reply) => {
 fastify.get('/fatorial', async (request, reply) => {
 	const { n } = request.query;
 
-	return factorial(getRandomIntInclusive(n, n));
+	sleep(500); // Operação bloqueante
+
+	const data = factorial(getRandomIntInclusive(n, n));
+
+	reply.send({ data });
 });
 
 // Rota para "quebrar" o processo
@@ -41,7 +46,7 @@ process.on('unhandledRejection', function (err) {
 	console.log('unhandledRejection Err::', err);
 	console.log('unhandledRejection Stack::', JSON.stringify(err.stack));
 
-	process.kill(process.pid, 'SIGHUP');
+	process.exit(1);
 });
 
 module.exports = { start };

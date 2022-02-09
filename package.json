@@ -4,7 +4,6 @@
 	"description": "Exemplificando a modulo cluster do Node.js junto ao pm2",
 	"main": "app.js",
 	"scripts": {
-		"start": "node cluster.js",
 		"start:process": "PORT=3000 node app.js",
 		"start:cluster": "PORT=3001 node cluster.js",
 		"start:pm2": "pm2 start",
@@ -30,7 +29,8 @@
 	"devDependencies": {
 		"autocannon": "^7.6.0",
 		"eslint": "^8.8.0",
-		"prettier": "^2.5.1"
+		"prettier": "^2.5.1",
+		"siege": "^0.2.0"
 	},
 	"eslintConfig": {
 		"env": {
