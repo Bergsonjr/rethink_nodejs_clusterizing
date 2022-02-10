@@ -17,6 +17,8 @@ const server = require('./server');
 			console.info(`Worker ${worker.process.pid} died with code: ${code}, and signal: ${signal}`);
 			console.info('Starting a new worker');
 
+			// Add error handler integration
+
 			cluster.fork();
 		});
 	} else {
