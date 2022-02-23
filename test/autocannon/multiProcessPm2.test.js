@@ -3,7 +3,7 @@ const autocannon = require('autocannon');
 function testWithClusterAndPm2() {
 	const instance = autocannon({
 		title: 'Test for Node.js multi process - cluster mode and PM2',
-		url: 'http://localhost:3002/factorial?n=10',
+		url: 'http://54.226.171.159:3002/factorial?n=10',
 		method: 'GET',
 		connections: 30, // número de conexões concorrentes
 		pipelining: 1, // número de solicitações HTTP simultâneas por conexão TCP
