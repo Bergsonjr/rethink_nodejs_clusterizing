@@ -1,41 +1,21 @@
-const fs = require('fs');
-const { promisify } = require('util');
-
-const readFileAsync = promisify(fs.readFile);
-
-const getRandomIntInclusive = require('./src/utils/getRandomIntInclusive');
-const factorial = require('./src/utils/factorial');
-const sleep = require('./src/utils/sleep');
-
+const autoload = require('fastify-autoload');
 const fastify = require('fastify')({
 	logger: true,
 	disableRequestLogging: false,
 });
 
-fastify.get('/', async (request, reply) => {
-	return 'App is running';
-});
+const path = require('path');
 
-// Rota para gerar maior processamento/consumo CPU
-fastify.get('/fatorial', async (request, reply) => {
-	const { n } = request.query;
-
-	sleep(500); // Operação bloqueante
-
-	const data = factorial(getRandomIntInclusive(n, n));
-
-	reply.send({ data });
-});
-
-// Rota para "quebrar" o processo
-fastify.get('/fail', async (request, reply) => {
-	readFileAsync('arquivo_inexistente.txt');
+//auto-load, based on directory
+fastify.register(autoload, {
+	dir: path.join(__dirname, 'src/routes'),
 });
 
 const start = async () => {
 	try {
-		await fastify.listen(process.env.PORT, '0.0.0.0');
+		await fastify.listen(process.env.PORT);
 	} catch (err) {
+		console.error(err);
 		console.error('error while trying to server up');
 		process.exit(1);
 	}

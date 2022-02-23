@@ -10,6 +10,12 @@
 		"process:metrics": "node test/autocannon/singleProcess.test.js",
 		"cluster:metrics": "node test/autocannon/multiProcess.test.js",
 		"pm2:metrics": "node test/autocannon/multiProcessPm2.test.js",
+		"process:siege": "siege -c 100 -b -t 30s 'http://localhost:3000/factorial?n=10'",
+		"cluster:siege": "siege -c 100 -b -t 30s 'http://localhost:3001/factorial?n=10'",
+		"pm2:siege": "siege -c 100 -b -t 30s 'http://localhost:3002/factorial?n=10'",
+		"process:tunnel": "npm run start:process & ngrok http 3000",
+		"cluster:tunnel": "npm run start:cluster & ngrok http 3001",
+		"pm2:tunnel": "npm run start:pm2 & ngrok http 3002",
 		"pm2:monit": "pm2 monit"
 	},
 	"repository": {
@@ -24,11 +30,13 @@
 	"homepage": "https://github.com/Bergsonjr/rethink_nodejs_clusterizing#readme",
 	"dependencies": {
 		"fastify": "^3.27.0",
+		"fastify-autoload": "^3.11.0",
 		"pm2": "^5.1.2"
 	},
 	"devDependencies": {
 		"autocannon": "^7.6.0",
 		"eslint": "^8.8.0",
+		"ngrok": "^4.3.0",
 		"prettier": "^2.5.1",
 		"siege": "^0.2.0"
 	},
