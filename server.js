@@ -13,7 +13,7 @@ fastify.register(autoload, {
 
 const start = async () => {
 	try {
-		await fastify.listen(process.env.PORT);
+		await fastify.listen(process.env.PORT, '0.0.0.0');
 	} catch (err) {
 		console.error(err);
 		console.error('error while trying to server up');
